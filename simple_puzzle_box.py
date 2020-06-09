@@ -6,7 +6,7 @@ from picamera import PiCamera
 
 red = 25
 blue =24
-step_number =50
+step_number =40
 close_delay =1
 IO.setwarnings(False)
 IO.setmode (IO.BCM)
@@ -26,8 +26,8 @@ while True:
         time.sleep(close_delay)
         for i in range(step_number):
             kit.stepper1.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)
-            time.sleep(0.05)
-        for i in range(step_number):
+            time.sleep(0.08)
+        for i in range(round(step_number/2)):
             kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.DOUBLE)
         kit.stepper1.release()
     elif IO.input(blue) == True:
@@ -35,8 +35,8 @@ while True:
         time.sleep(close_delay)
         for i in range(step_number):
             kit.stepper1.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)
-            time.sleep(0.05)
-        for i in range(step_number):
+            time.sleep(0.08)
+        for i in range(round(step_number/2)):
             kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.DOUBLE)
         kit.stepper1.release()
     else:
