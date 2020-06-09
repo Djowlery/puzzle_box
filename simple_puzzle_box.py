@@ -2,6 +2,7 @@ from adafruit_motorkit import MotorKit
 from adafruit_motor import stepper
 import time
 import RPi.GPIO as IO
+import os
 from picamera import PiCamera
 from datetime import datetime
 
@@ -21,13 +22,16 @@ kit = MotorKit()
 camera = PiCamera()
 kit.stepper1.release()
 
-#main loop
 with open("Puzzle_Data.csv", 'a') as puzzle_data:
-    
+    if os.stat("Puzzle_Data.csv").st_size ==0:
+        puzzle_data.write("timestamp,door position\n")
+ 
+ #main loop
+    print("puzzle box is running")
     while True:
         if IO.input(red) == True:
             print("red")
-            puzzle_data.write("{},red".format(datetime.now()))
+            puzzle_data.write("{},red\n".format(datetime.now()))
             time.sleep(close_delay)
             for i in range(step_number):
                 kit.stepper1.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)
@@ -35,8 +39,9 @@ with open("Puzzle_Data.csv", 'a') as puzzle_data:
             for i in range(round(step_number/2)):
                 kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.DOUBLE)
             kit.stepper1.release()
+            print("door closed")
         elif IO.input(blue) == True:
-            puzzle_data.write("{},blue".format(datetime.now()))
+            puzzle_data.write("{},blue\n".format(datetime.now()))
             print("blue")
             time.sleep(close_delay)
             for i in range(step_number):
@@ -45,6 +50,7 @@ with open("Puzzle_Data.csv", 'a') as puzzle_data:
             for i in range(round(step_number/2)):
                 kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.DOUBLE)
             kit.stepper1.release()
+            print("door closed")
         else:
-            print("unresolved")
+            pass
         time.sleep(0.1)
