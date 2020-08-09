@@ -8,8 +8,8 @@ motor = RpiMotorLib.BYJMotor("TestMotor", "28BYJ")
 while True:
     command = input()
     if command == 'pull':
-        rotation = float(input(prompt='enter a number to pull back from 0 - 1: '))
-        rotation = round(rotation*fullRotation)
+        rotation = input(prompt='enter a number to pull back from 0 - 1: ')
+        rotation = round(float(rotation)*fullRotation)
         motor.motor_run(GpioPins,0.001,rotation,False,False,"half",.001)
         sleep(0.5)
     elif command == 'center':
@@ -17,7 +17,7 @@ while True:
     elif command == 'quit':
         print("calibration complete")
         break
-
+        
 
 
 
