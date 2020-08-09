@@ -3,7 +3,7 @@ from RpiMotorLib import rpiservolib
 import time
 servoPin = 17
 servoStart = 1
-movePull = 6
+movePull = 5
 holdTime = 1
 servoDelay = 1
 feeder_servo = rpiservolib.SG90servo("feeder")
