@@ -5,7 +5,7 @@ servoPin = 17
 servoStart = 1
 movePull = 7
 holdTime = 0.4
-servoDelay = 0.3
+servoDelay = 0.2
 feeder_servo = rpiservolib.SG90servo("feeder")
 feeder_servo.servo_move(servoPin,servoStart)
 
@@ -17,7 +17,7 @@ while True:
         time.sleep(holdTime)
         feeder_servo.servo_move(servoPin,servoStart,servoDelay)
     elif move == 'half':
-        feeder_servo.servo_move(servoPin,3.6,servoDelay)
+        feeder_servo.servo_move(servoPin,3.8,servoDelay)
         time.sleep(holdTime)
         feeder_servo.servo_move(servoPin,servoStart,servoDelay)
     elif move == 'quick':
