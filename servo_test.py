@@ -3,18 +3,16 @@ from RpiMotorLib import rpiservolib
 import time
 servoPin = 17
 feeder_servo = rpiservolib.SG90servo("feeder")
+feeder_servo.servo_move(servoPin,1)
+move = 0
+while move !=-1:
+    move = float(input())
+    feeder_servo.servo_move(servoPin,move)
+    print(move)
+    time.sleep(1)
+    feeder_servo.servo_move(servoPin,1)
+  
+   
 
-feeder_servo.servo_sweep(17)
 
-GPIO.cleanup()
-=======
-
-while True:
-    feeder_servo.servo_move(servoPin,12)
-    time.sleep(0.5)
-    feeder_servo.servo_move(servoPin,2)
-
-except KeyboardInterrupt:
-    print("servo test terminated")
-    GPIO.cleanup()
 
