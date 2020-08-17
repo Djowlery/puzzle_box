@@ -1,10 +1,11 @@
 import RPi.GPIO as GPIO
 from time import sleep
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(25,GPIO.IN)
+IRL_pin = 21
+GPIO.setup(IRL_pin,GPIO.IN)
 
 while True:
-    if GPIO.input(25):
+    if GPIO.input(IRL_pin):
         print("blocked")
     else:
         print("open")
