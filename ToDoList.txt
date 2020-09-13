@@ -1,5 +1,0 @@
-update git and save files
-try to ssh into pi
-add camera functionality
-add server functionality
-fix box with glue

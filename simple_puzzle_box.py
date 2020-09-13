@@ -1,3 +1,8 @@
+#this is the main working code for the first version of the puzzle box that was sent
+#it used a NEMA 17 stepper motor with an adafruit motor shield
+#the script records door openings in a csv file named puzzle_data
+
+
 from adafruit_motorkit import MotorKit
 from adafruit_motor import stepper
 import time

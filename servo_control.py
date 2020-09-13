@@ -1,3 +1,6 @@
+#Author: nadavschwalb@mail.tau.ac.il
+#control feeder servo, if you are using a stepper motor this script is easy to modify
+# the commands are 'full' - 90 deg open, 'half' - 45 deg open, 'quick' - short delay time , 'close' and 'quit'
 import RPi.GPIO as GPIO
 from RpiMotorLib import rpiservolib
 import time

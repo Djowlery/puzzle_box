@@ -1,3 +1,9 @@
+#Author: nadavschwalb@mail.tau.ac.il
+#control the motor through the terminal, usefull for testing and calibrating the door mechanism through SSH
+# terminal commands are 'center', 'quit' and 'pull' which will ask for percentage of rotation for calibration.
+#I used the 28BYJ unipolar stepper motor with the ULN2003 driver board
+#if you choose to use a diffrent stepper motor please make sure to use the correct method in RpiMotorLib
+#GpioPins are numbered by BCM layout
 import RPi.GPIO as GPIO
 from RpiMotorLib import RpiMotorLib
 from time import sleep

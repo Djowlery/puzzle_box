@@ -1,4 +1,9 @@
-#main scrip rumming the puzzlebox
+# Author : nadavschwalb@mail.tau.ac.il
+# main scrip running the puzzlebox 
+# tests camera and motor on startup
+# creates session log file
+# apon door opening the door closes after the delay set in door_delay
+# captures a video untill the door is closed and saves the video with a timestamp
 
 #imports
 from picamera import PiCamera
@@ -38,15 +43,17 @@ async def capture(timestamp,delay):
     
 
 #objects
+user = os.environ["USER"]
 camera = PiCamera()
 doorMotor = RpiMotorLib.BYJMotor("TestMotor", "28BYJ")
-capture_dir = "/home/pi/puzzlebox_data/captures"
+capture_dir = "/home/"+ user + "/puzzlebox_data/captures"
 timeStamp = time.strftime("%a-%d-%m-%y-%H-%M-%S",time.localtime())
-log_dir = "/home/pi/puzzlebox_data/log"
+log_dir = "/home/" + user + "/puzzlebox_data/log"
 IR_L_pin = 21
 IR_R_pin = 26
+door_delay  = 3
 
-#object setups
+#objects setups
 camera.resolution = (1024,768)
 logFileName = log_dir+"/"+"log-file "+timeStamp+".txt"
 logFile = open(logFileName,'w')
@@ -85,14 +92,14 @@ try:
             print("right")
             timeStamp = timeStamp = time.strftime("%a-%d-%m-%y-%H-%M-%S",time.localtime())
             logFile.write("opened right " + timeStamp +"\n")
-            loop.run_until_complete(arrived(3,timeStamp))
+            loop.run_until_complete(arrived(door_delay,timeStamp))
         
 
         elif GPIO.input(IR_L_pin):
             print("left")
             timeStamp = timeStamp = time.strftime("%a-%d-%m-%y-%H-%M-%S",time.localtime())
             logFile.write("opened left " + timeStamp+"\n")
-            loop.run_until_complete(arrived(3,timeStamp))
+            loop.run_until_complete(arrived(door_delay,timeStamp))
          
         else:
             pass
