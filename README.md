@@ -8,4 +8,4 @@ by running 'bash setup.sh' in the puzzle_box directory, this will install the ne
 2) the repository contains test scripts for the door motor, IR limit switches, feeder servo and camera
 
 3) puzzlebox_main.py is the main script that will run the puzzle box. in order to run the script automaticly when the raspberry pi boots run the command
-'sudo echo "sudo python3 /home/$USER/<path to repository>/puzzlebox_main.py &" | tee - a /etc/rc.local'
+'sudo echo "sudo python3 /home/$USER/(path to repository)/puzzlebox_main.py &" | tee - a /etc/rc.local'
