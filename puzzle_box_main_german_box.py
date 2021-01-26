@@ -29,12 +29,12 @@ async def close_door(delay):
     await asyncio.sleep(delay)
     for x in range(forward_step_number):
         kit.stepper1.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)
-        time.sleep(0.01)
+        time.sleep(0.06)
     print("forward finished")
     time.sleep(0.5)
     for x in range(backward_step_number):
         kit.stepper1.onestep(direction=stepper.BACKWARD, style=stepper.DOUBLE)
-        time.sleep(0.01)
+        time.sleep(0.001)
 
     print("forward backwards")
     kit.stepper1.release()
@@ -46,7 +46,7 @@ async def capture(timestamp,delay):
     count = 0
     await close_door(delay)
     while GPIO.input(IR_L_pin) or GPIO.input(IR_R_pin) or count > 50:
-        time.sleep(0.3)
+        time.sleep(0.1)
         count += 1
     time.sleep(1)
     camera.stop_recording()
